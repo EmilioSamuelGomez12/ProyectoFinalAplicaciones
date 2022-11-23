@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css">
+
+</head>
+<body>
+    <div>
+        
+        <h1>Bienvenido <span>{{nombreUsuario}}</span></h1>
+
+        <var></var>
+        
+        <form action="creacionPersonaje" method="post">
+            
+            <input type="hidden" id="" name="correoCreacionPersonajes" value="{{correoUsuario}}" >
+
+            <div><input type="text" name="nombrePersonajeCreado" id="" placeholder="Nombre del Personaje Creado"></div>
+
+            <div>
+                <p><h2> Casco </h2></p>
+                <input type="radio" id="C1" name="personajeCasco" value="cVisionesMalditas">
+                <label for="C1">Casco de Visiones Malditas</label>   
+                <input type="radio" id="C2" name="personajeCasco" value="cYelmoProteccionCaidos">
+                <label for="C2">Yelmo de Protección contra los Caídos</label><br>
+                <input type="radio" id="C3" name="personajeCasco" value="cRostroDemoniaco">
+                <label for="C3">Rostro Demoníaco del Guardián</label><br>
+                <input type="radio" id="C4" name="personajeCasco" value="cCuradoraCarga">
+                <label for="C4">Curadora de Cargas</label><br>    
+            </div>  
+            
+            <div>
+                <p><h2> Placa de Pecho </h2></p>
+                <input type="radio" id="P1" name="personajePlaca" value="pPlacaFortunas">
+                <label for="P1">Placa de Batalla de Fortunas Retorcidas</label><br>
+                <input type="radio" id="P2" name="personajePlaca" value="pJubonEncantado">
+                <label for="P2">Jubon Encantado de las Estrellas</label><br>
+                <input type="radio" id="P3" name="personajePlaca" value="pCorazaCampeon">
+                <label for="P3">Coraza de Campeon del Origen</label><br>
+                <input type="radio" id="P4" name="personajePlaca" value="pVinculoSol">
+                <label for="P4">Vínculo del Sol Ardiente</label><br>
+            </div>
+
+            <div>
+                <p><h2> Arma Principal </h2></p>
+                <input type="radio" id="A1" name="personajeArma" value="aSusurroSueño">
+                <label for="A1">Susurro de Sueño</label><br>
+                <input type="radio" id="A2" name="personajeArma" value="aSombraLuna">
+                <label for="A2">Sombra de Luna</label><br>
+                <input type="radio" id="A3" name="personajeArma" value="aCantoMuerte">
+                <label for="A3">Canto de la Muerte</label><br>
+                <input type="radio" id="A4" name="personajeArma" value="aGrimorioReencarnado">
+                <label for="A4">Grimorio Reencarnado</label><br>
+            </div>
+
+            <div><button type="submit">Continuar</button></div>
+
+        </form>
+
+    </div>
+</body>
+</html>

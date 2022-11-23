@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css">
+
+</head>
+<body>
+    <div>
+        <h1>Bienvenido {{nombreUsuario}}, estos son tus personajes creados:</h1>       
+        </form>
+        <ul>        
+            {{#personajesCreados}}
+                {{#.}}      
+                <form action="datosPersonaje" method="post">
+                    <input type="hidden" id="" name="correoUsuario" value="{{correoUsuario}}" >
+                    <input type="hidden" id="" name="nombrePC" value="{{nombrePersonajeCreado}}"><br>
+                    <div><button type="submit">{{nombrePersonajeCreado}}</button></div>
+                </form>
+                {{/.}}
+             {{/personajesCreados}}
+        </ul>
+    </div>
+    
+    <div>
+        <form action="creacionPersonajeUsuario" method="post">
+            <input type="hidden" id="" name="correoUsuario" value="{{correoUsuario}}" >
+            <div><button type="submit">Crear Nuevo Personaje</button></div>
+        </form>
+    </div>
+
+    <p><a href="inicioSesionForma">Cerrar Sesion</a></p>
+
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+body  {
+  background-image: url("Fondo.jpg");
+  width:80%;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top: auto;
+        margin-bottom: auto;
+}
+
+p{
+  color: white;
+}
+
+
+a{
+  color: white;
+}
+
+h1{
+  color: white;
+  size: 50px; 
+}
+
+h2{
+  color: white;
+  size: 20px;
+}
+
+button{
+  background-color:rgb(37, 26, 26);
+  color: white;
+
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+
+  border: 2px solid rgb(26, 9, 9);
+  border-radius: 2px;
+}
+
+label{
+  color: white;
+}
+
+input[type=text] {
+  background-color:rgba(0, 0, 0, 0);
+  color: white;
+
+  text-align: center; 
+
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 4px;
+}
+
+input[type=password] {
+  background-color:rgba(0, 0, 0, 0);
+  color: white;
+
+  text-align: center; 
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 4px;
+}
+
+input[type=email] {
+  background-color:rgba(0, 0, 0, 0);
+  color: white;
+
+  text-align: center; 
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 4px;
+}
+
+input[type=date] {
+  background-color:rgba(0, 0, 0, 0);
+  color: white;
+}
+
+input[type=text]:focus {
+  text-align: center; 
+  border: 3px solid #555;
+}
+
+
+input[type=password]:focus {
+  text-align: center; 
+  border: 3px solid #555;
+}
+
+
+input[type=email]:focus {
+  text-align: center; 
+  border: 3px solid #555;
+}

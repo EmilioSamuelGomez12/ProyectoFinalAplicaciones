@@ -1,0 +1,202 @@
+function buscarUsuarioPorCorreo(correo)
+{
+    let pos = 0
+    //console.log("Correo:",correo)
+    for(let i=0;i<this.usuarios.length;i++)
+    {
+        if(this.usuarios[i].correoUsuario==correo)
+        pos = i
+    }
+
+    return pos   
+
+}
+
+function buscarPersonajeUsuario(posCorreo,nombrePersonaje)
+{
+    let pos = 0
+    //console.log("Correo:",correo)
+    for(let i=0;i<this.usuarios[posCorreo].personajesCreados.length;i++)
+    {
+        if(this.usuarios[posCorreo].personajesCreados[i].nombrePersonajeCreado==nombrePersonaje)
+        pos = i
+    }
+
+    return pos   
+
+}
+
+function validarUsuarioRegistrado(usuarioRegistrado)
+{
+   if(!usuarioRegistrado.correoUsuario ||
+    !usuarioRegistrado.nombreUsuario ||
+    !usuarioRegistrado.fechaNacimiento ||
+    !usuarioRegistrado.passwordRegistro ||
+    !usuarioRegistrado.passwordValidation)
+   {
+    return null
+   }
+   else
+   {
+    if(usuarioRegistrado.passwordRegistro==usuarioRegistrado.passwordValidation){
+        this.usuarios.push(usuarioRegistrado) 
+        usuarioRegistrado.personajesCreados=[]
+        //console.log("This:",this)
+
+        return usuarioRegistrado
+    }  
+   }
+   return null
+
+}
+
+function crearPersonaje(personajeCreado)
+{
+    //console.log(personajeCreado.correoCreacionPersonajes)
+    let pos = this.buscarUsuarioPorCorreo(personajeCreado.correoCreacionPersonajes)
+
+    if(pos>=0)
+       {
+
+        let Vida = 100
+        let Resistencias = 100
+        let Daño = 100
+        let Inteligencia = 100
+        let Magia = 100
+        let ItemSuperior = ""
+        let ItemMedio = ""
+        let ItemMano =""
+
+        switch (personajeCreado.personajeCasco) {
+            case "cVisionesMalditas": 
+                Resistencias *= 0.5
+                Daño *= 1.2
+                Magia *= 1.8
+                ItemSuperior = "Caso de Visiones Malditas"
+            break;
+            case "cYelmoProteccionCaidos": 
+                Vida *= 1.2
+                Resistencias *= 1.2
+                Inteligencia *= 0.7
+                ItemSuperior = "Yelmo de Proteccion contra los Caidos"
+            break;
+            case "cRostroDemoniaco": 
+                Vida *= 1.5
+                Daño *= 1.5
+                Magia *= 0.3
+                ItemSuperior = "Rostro Demoniaco del Guardian"
+            break;
+            case "cCuradoraCarga": 
+                Vida *= 1.2
+                Daño *= 0.2
+                Inteligencia *= 1.8
+                ItemSuperior = "Curadora de Cargas"
+            break;
+          }
+
+          switch (personajeCreado.personajePlaca) {
+            case "pPlacaFortunas": 
+                Vida += 50
+                Daño += 100
+                Inteligencia -=80
+                ItemMedio = "Placa de Batalla de Fortunas Retorcidas"
+            break;
+            case "pJubonEncantado": 
+                Daño -= 40
+                Inteligencia += 50
+                Magia += 50
+                ItemMedio = "Jubon Encantado de las Estrellas"
+            break;
+            case "pCorazaCampeon": 
+                Vida += 20
+                Resistencias += 80
+                Magia -= 40
+                ItemMedio = "Coraza de Campeon del Origen"
+            break;
+            case "pVinculoSol": 
+                Vida += 20
+                Inteligencia += 30
+                Magia += 30
+                Daño -= 80
+                ItemMedio = "Vinculo del Sol Ardiente"
+            break;
+          }
+
+          switch (personajeCreado.personajeArma) {
+            case "aSusurroSueño": 
+                Daño += 75
+                Magia += 35
+                ItemMano = "Susurro de Sueño"
+            break;
+            case "aSombraLuna": 
+                Vida += 90
+                Resistencias += 20
+                ItemMano = "Sombra de la Luna"
+            break;
+            case "aCantoMuerte": 
+                Daño += 35
+                Magia += 75
+                ItemMano = "Canto de la Muerte"
+            break;
+            case "aGrimorioReencarnado": 
+                Inteligencia += 80
+                Resistencias += 30
+                ItemMano = "Grimorio Reencarnado"
+            break;
+          }
+
+          let personajeCreadoObj = {correoUsuario:personajeCreado.correoCreacionPersonajes, nombrePersonajeCreado:personajeCreado.nombrePersonajeCreado,
+            Vida:Vida, Resistencias:Resistencias, Danio:Daño, Inteligencia:Inteligencia, Magia:Magia, 
+            personajeCasco:ItemSuperior, personajePlaca:ItemMedio ,personajeArma:ItemMano}
+
+            //console.log(personajeCreadoObj)
+
+        this.usuarios[pos].personajesCreados.push(personajeCreadoObj)
+
+        return personajeCreadoObj
+       }   
+    
+}
+
+function obtencionUsuario(correo)
+{
+   let pos = this.buscarUsuarioPorCorreo(correo)
+
+   if(pos>=0)
+   {
+        return this.usuarios[pos]
+   }
+   return null   
+}
+
+function obtencionPersonaje(correo, nombrePersonaje)
+{
+   let pos = this.buscarUsuarioPorCorreo(correo)
+
+   if(pos>=0)
+   {
+        let posPersonaje = this.buscarPersonajeUsuario(pos,nombrePersonaje)
+        let personaje = this.usuarios[pos].personajesCreados[posPersonaje]
+        return personaje
+   }
+   return null   
+}
+
+
+function validarUsuarioInicio(correo,password)
+{
+   let pos = this.buscarUsuarioPorCorreo(correo)
+
+    if(pos>=0)
+    {
+            return this.usuarios[pos]
+    }
+    return null   
+}
+
+function crearRepoUsuarios()
+{
+    return {usuarios:[],buscarUsuarioPorCorreo,buscarPersonajeUsuario,validarUsuarioInicio,validarUsuarioRegistrado,crearPersonaje, obtencionUsuario, obtencionPersonaje, }
+}
+
+module.exports=crearRepoUsuarios

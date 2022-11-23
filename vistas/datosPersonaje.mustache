@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css">
+
+    </head>
+    <body>
+    <h1><span>{{nombrePersonajeCreado}}</span></h1>
+    <div><p>{{Vida}}</p></div>
+    <div><p>{{Resistencias}}</p></div>
+    <div><p>{{Danio}}</p></div>
+    <div><p>{{Inteligencia}}</p></div>
+    <div><p>{{Magia}}</p></div>
+    <div><p>Equipamiento:</p></div>
+    <div><p>{{personajeCasco}}</p></div>
+    <div><p>{{personajePlaca}}</p></div>
+    <div><p>{{personajeArma}}</p></div>
+    
+    <form action="repertorioPersonajes" method="post">
+        <input type="hidden" id="" name="correoU" value="{{correoUsuario}}" >
+        <div><button type="submit">Continuar</button></div>
+    </form>
+</body>
+</html>

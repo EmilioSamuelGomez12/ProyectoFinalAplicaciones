@@ -1,0 +1,83 @@
+const express=require("express")
+const mustacheExpress=require("mustache-express")
+const app=express()
+//const funcioncreadora=require("./usuarios")
+//const repoUsuarios=funcioncreadora()
+const repoUsuarios=require("./DatosUsuarios")()
+app.use(express.static('www'))
+app.use(express.urlencoded({extended:false}))
+app.engine('mustache',mustacheExpress())  //Define las vistas de mustache
+app.set('view engine','mustache')
+app.set('views',__dirname + '/vistas')
+
+app.get("/repertorioPersonajes",(request,response)=>{
+    response.render("repertorioPersonajes")
+})
+
+app.get("/inicioSesionForma",(request,response)=>{
+    response.render("inicioSesionForma")
+})
+
+app.get("/registroUsuario",(request,response)=>{
+    response.render("registroUsuario")
+})
+
+app.get("/creacionPersonaje",(request,response)=>{
+    response.render("CreacionPersonaje")
+})
+
+app.post("/login",(request,response)=>{
+    
+
+    let usuario=repoUsuarios.validarUsuarioInicio(request.body.correo,request.body.password)
+
+    if(usuario==null)
+    {
+        response.status(404).render("inicioSesionForma",{correo:request.body.correo})
+        return
+    }
+    response.status(200).render("repertorioPersonajes",usuario)
+})
+
+app.post("/register",(request,response)=>{
+    
+    const obj = JSON.parse(JSON.stringify(request.body));
+    let usuario=repoUsuarios.validarUsuarioRegistrado(obj)
+
+    if(usuario==null)
+    {
+        response.status(404).render("registroUsuario",{error:request.body})
+        return
+    }
+    
+    response.status(200).render("CreacionPersonaje",usuario)
+})
+
+app.post("/creacionPersonajeUsuario",(request,response)=>{
+
+    let usuario = repoUsuarios.obtencionUsuario(request.body.correoUsuario)
+    response.status(200).render("CreacionPersonaje",usuario)
+
+})
+
+app.post("/creacionPersonaje",(request,response)=>{
+
+    let personaje = repoUsuarios.crearPersonaje(request.body)
+    response.status(200).render("datosPersonaje",personaje)
+
+})
+
+app.post("/datosPersonaje",(request,response)=>{
+    let personaje = repoUsuarios.obtencionPersonaje(request.body.correoUsuario,request.body.nombrePC)
+    response.status(200).render("datosPersonaje",personaje)
+})
+
+
+app.post("/repertorioPersonajes",(request,response)=>{
+
+    let usuario = repoUsuarios.obtencionUsuario(request.body.correoU)
+    response.status(200).render("repertorioPersonajes",usuario)
+
+})
+
+app.listen(8080,()=>console.log("Corriendo en el 8080..."))
